@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Page Not Found</title>
+    <script>
+        // GitHub Pages 404 redirect to enable client-side routing
+        // When a user tries to access a path that doesn't exist as a static file,
+        // redirect to the home page so the client-side router can handle it
+        const path = window.location.pathname;
+        // Only redirect if it's not the root and not already a file
+        if (path !== '/' && !path.endsWith('.html') && !path.endsWith('.json') && !path.endsWith('.mjs')) {
+            // Remove the /design-portfolio prefix if on GitHub Pages subdirectory
+            let redirectPath = path;
+            if (redirectPath.includes('/design-portfolio/')) {
+                redirectPath = redirectPath.replace('/design-portfolio', '');
+            }
+            // Store the redirect path and go to index
+            sessionStorage.setItem('redirect', redirectPath);
+            window.location.replace('/design-portfolio/');
+        }
+    </script>
+</head>
+<body>
+    <h1>Page Not Found</h1>
+    <p>Redirecting...</p>
+</body>
+</html>
